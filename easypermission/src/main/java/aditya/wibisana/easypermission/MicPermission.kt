@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.asLiveData
@@ -31,4 +32,10 @@ class MicPermission(
             ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
     }
 
+    fun request(activity: AppCompatActivity) {
+        ActivityCompat.requestPermissions(
+            activity,
+            listOf(Manifest.permission.RECORD_AUDIO).toTypedArray(),
+            12301)
+    }
 }
