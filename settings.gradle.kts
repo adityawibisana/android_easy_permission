@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "PermissionHelper"
 include(":app")
+include(":easypermission")
