@@ -9,15 +9,16 @@ import androidx.core.view.isVisible
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
 
-    lateinit var micPermission: MicPermission
+    private val micPermission: MicPermission by lazy {
+        MicPermission(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        micPermission = MicPermission(this)
-        micPermission.isPermissionGranted.observe(this) {
+        micPermission.isGrantedLiveData.observe(this) {
             binding.micPermission.isVisible = !it
         }
         binding.micPermission.setOnClickListener {
