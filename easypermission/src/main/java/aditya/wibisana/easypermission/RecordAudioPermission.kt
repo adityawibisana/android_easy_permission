@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 
-class RecordAudioPermissionVariable : BasePermissionVariable() {
+class RecordAudioPermission : BasePermissionVariable() {
     fun setup(activity: AppCompatActivity) {
         activity.lifecycleScope.launch {
             activity.repeatOnLifecycle(Lifecycle.State.RESUMED) {

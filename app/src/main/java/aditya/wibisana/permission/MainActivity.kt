@@ -1,6 +1,6 @@
 package aditya.wibisana.permission
 
-import aditya.wibisana.easypermission.RecordAudioPermissionVariable
+import aditya.wibisana.easypermission.RecordAudioPermission
 import aditya.wibisana.permission.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +9,7 @@ import androidx.core.view.isVisible
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
 
-    private val recordAudioPermission = RecordAudioPermissionVariable()
+    private val recordAudioPermission = RecordAudioPermission()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
