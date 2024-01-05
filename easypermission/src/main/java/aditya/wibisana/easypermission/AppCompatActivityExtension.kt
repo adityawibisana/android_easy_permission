@@ -8,15 +8,15 @@ import androidx.core.app.ActivityCompat
 
 fun AppCompatActivity.requestPermission(permissionManifest: String) {
     if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissionManifest)) {
-        ActivityCompat.requestPermissions(
-            this,
-            listOf(permissionManifest).toTypedArray(),
-            1)
-    } else {
         baseContext.packageName
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
         val uri = Uri.fromParts("package", baseContext.packageName, null)
         intent.data = uri
         startActivity(intent)
+    } else {
+        ActivityCompat.requestPermissions(
+            this,
+            listOf(permissionManifest).toTypedArray(),
+            1)
     }
 }
