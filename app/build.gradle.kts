@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "aditya.wibisana.permission"
-        minSdk = 24
+        minSdk = 16
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
