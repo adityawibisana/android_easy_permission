@@ -6,18 +6,11 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class RecordAudioPermission {
-    private val _isGranted = MutableStateFlow(false)
-    val isGrantedLiveData = _isGranted.asLiveData()
-    val isGranted = _isGranted.asStateFlow()
-
+class RecordAudioPermissionVariable : BasePermissionVariable() {
     fun setup(activity: AppCompatActivity) {
         activity.lifecycleScope.launch {
             activity.repeatOnLifecycle(Lifecycle.State.RESUMED) {
@@ -27,7 +20,7 @@ class RecordAudioPermission {
     }
 
     private fun reload(context: Context) {
-        _isGranted.value =
+        _isPermissionGranted.value =
             ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
     }
 
