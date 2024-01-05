@@ -2,12 +2,8 @@ package aditya.wibisana.easypermission
 
 import android.Manifest
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
-import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.asLiveData
@@ -36,17 +32,6 @@ class RecordAudioPermission {
     }
 
     fun request(activity: AppCompatActivity) {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.RECORD_AUDIO)) {
-            ActivityCompat.requestPermissions(
-                activity,
-                listOf(Manifest.permission.RECORD_AUDIO).toTypedArray(),
-                1)
-        } else {
-            activity.baseContext.packageName
-            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-            val uri = Uri.fromParts("package", activity.baseContext.packageName, null)
-            intent.data = uri
-            activity.startActivity(intent)
-        }
+        activity.requestPermission(Manifest.permission.RECORD_AUDIO)
     }
 }
