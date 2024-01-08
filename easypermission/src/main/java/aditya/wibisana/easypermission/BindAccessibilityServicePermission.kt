@@ -10,8 +10,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 
-class BindAccessibilityServicePermission : BasePermission() {
-    fun setup(appCompatActivity: AppCompatActivity, accessibilityService: Class<*>?) {
+class BindAccessibilityServicePermission(
+    appCompatActivity: AppCompatActivity,
+    accessibilityService: Class<*>?)
+    : PermissionVariable()
+{
+    init {
         appCompatActivity.lifecycleScope.launch {
             appCompatActivity.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 reload(appCompatActivity, accessibilityService)

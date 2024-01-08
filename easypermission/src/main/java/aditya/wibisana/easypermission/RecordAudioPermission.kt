@@ -1,8 +1,10 @@
 package aditya.wibisana.easypermission
 
 import android.Manifest
+import androidx.appcompat.app.AppCompatActivity
 
-class RecordAudioPermission : BasePermission() {
-    override val permissionManifest: String
-        get() = Manifest.permission.RECORD_AUDIO
+class RecordAudioPermission(appCompatActivity: AppCompatActivity)
+    : BasePermission(appCompatActivity)
+{
+    override val permissionManifest: String get() = Manifest.permission.RECORD_AUDIO
 }
