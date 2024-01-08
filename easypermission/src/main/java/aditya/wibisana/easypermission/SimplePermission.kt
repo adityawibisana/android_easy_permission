@@ -8,7 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 
-sealed class BasePermission (
+sealed class SimplePermission (
     appCompatActivity: AppCompatActivity
 ) : PermissionVariable()
 {
