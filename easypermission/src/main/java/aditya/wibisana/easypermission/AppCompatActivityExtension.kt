@@ -16,8 +16,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-fun AppCompatActivity.requestPermission(permissionManifest: String) {
-    if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissionManifest)) {
+fun AppCompatActivity.requestPermission(permission: String) {
+    if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
         baseContext.packageName
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
         val uri = Uri.fromParts("package", baseContext.packageName, null)
@@ -26,7 +26,7 @@ fun AppCompatActivity.requestPermission(permissionManifest: String) {
     } else {
         ActivityCompat.requestPermissions(
             this,
-            listOf(permissionManifest).toTypedArray(),
+            listOf(permission).toTypedArray(),
             1)
     }
 }
