@@ -16,6 +16,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+ /**
+ * @param permission The permission string. See [link](https://developer.android.com/reference/android/Manifest.permission)
+ */
 fun AppCompatActivity.requestPermission(permission: String) {
     if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
         baseContext.packageName
