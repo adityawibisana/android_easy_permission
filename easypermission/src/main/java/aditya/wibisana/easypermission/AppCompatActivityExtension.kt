@@ -1,10 +1,20 @@
 package aditya.wibisana.easypermission
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 fun AppCompatActivity.requestPermission(permissionManifest: String) {
     if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissionManifest)) {
@@ -19,4 +29,18 @@ fun AppCompatActivity.requestPermission(permissionManifest: String) {
             listOf(permissionManifest).toTypedArray(),
             1)
     }
+}
+
+fun AppCompatActivity.isPermissionGranted(permission: String) : StateFlow<Boolean> {
+    val granted = MutableStateFlow(false)
+    lifecycleScope.launch {
+        repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            granted.value = ContextCompat.checkSelfPermission(this@isPermissionGranted, permission) == PackageManager.PERMISSION_GRANTED
+        }
+    }
+    return granted
+}
+
+fun AppCompatActivity.isPermissionGrantedLiveData(permission: String) : LiveData<Boolean> {
+    return isPermissionGranted(permission).asLiveData()
 }
